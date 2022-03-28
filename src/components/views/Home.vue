@@ -1,11 +1,36 @@
 <template>
-  <div>Home2</div>
+  <MainHeader/>
+  <div class="container py-4">
+    <div class="row align-items-md-stretch">
+      <div class="col-md-6">
+        <div class="h-100 p-5 text-white bg-dark rounded-3">
+          <h2>Receive help from a volunteer!</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dui vestibulum, lobortis sem vehicula, euismod nisi.
+          </p>
+          <router-link :to="{name: 'volunteer-appointment'}" class="btn btn-outline-light">Create appointment</router-link>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="h-100 p-5 text-white bg-dark rounded-3">
+          <h2>Become a volunteer!</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dui vestibulum, lobortis sem vehicula, euismod nisi.
+          </p>
+            <router-link class="btn btn-outline-light disabled" to="">Not yet implemented</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import MainHeader from "@/components/MainHeader";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Home"
+  name: "Home",
+  components: {MainHeader}
+
 }
 </script>
 
