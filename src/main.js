@@ -4,6 +4,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+import "@/assets/scss/main.scss"
 
 import routes from './routes';
 
