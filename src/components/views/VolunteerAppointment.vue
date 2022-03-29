@@ -1,111 +1,34 @@
 <template>
-  <div class="container volunteer-container py-4">
-    <div class="card h-100 overflow-auto ">
-        <div class="list-group list-group-flush" >
+  <div class="container d-flex flex-column volunteer-container py-4">
+      <div class="card mt-4 overflow-auto">
+        <div class="list-group list-group-flush">
           <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
+              <h5 class="mb-1">Full Name</h5>
               <small>3 days ago</small>
             </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small>And some small print.</small>
+            <p class="mb-1">Description about volunteer.</p>
           </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Some placeholder content in a paragraph.</p>
-            <small class="text-muted">And some muted small print.</small>
-          </a>
+          <AvailableVolunteer
+            v-for="n in 10"
+            v-bind:key="n"
+          />
         </div>
+    </div>
+    <div class="row my-4">
+      <div class="col d-flex justify-content-end">
+        <router-link class="btn  btn-success" to="">Check availability <font-awesome-icon icon="arrow-right" /></router-link>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
+import AvailableVolunteer from "@/components/AvailableVolunteer";
 export default {
-  name: "VolunteerAppointment"
+  name: "VolunteerAppointment",
+  components: {AvailableVolunteer}
+
 }
 </script>
 

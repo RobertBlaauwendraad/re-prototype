@@ -2,7 +2,7 @@
   <MainHeader/>
   <div class="container py-4">
     <div class="row align-items-md-stretch">
-      <div class="col-md-6">
+      <div class="col-md-6 mb-4">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
           <h2>Receive help from a volunteer!</h2>
           <p>
