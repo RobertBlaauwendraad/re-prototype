@@ -1,7 +1,8 @@
 <template>
-  <div class="card mt-4 overflow-auto">
+  <h3>Available volunteers</h3>
+  <div class="card overflow-auto">
     <div class="list-group list-group-flush">
-      <AvailableVolunteer
+      <RadioVolunteer
         v-for="volunteer in volunteers"
         :volunteer="volunteer"
         :key="volunteer"
@@ -9,14 +10,15 @@
       />
     </div>
   </div>
+  <p v-if="volunteers.length === 0">No volunteers are currently available!</p>
 </template>
 
 <script>
-import AvailableVolunteer from "@/components/AvailableVolunteer";
+import RadioVolunteer from "@/components/RadioVolunteer";
 import volunteers from "@/assets/js/volunteers"
 export default {
   name: "VolunteerList",
-  components: {AvailableVolunteer},
+  components: {RadioVolunteer},
   data: () => ({
     chosenVolunteer: '',
     volunteers

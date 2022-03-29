@@ -5,7 +5,7 @@
       v-model="chosenVolunteer"
       v-if="tabIndex === 0"
     />
-    <VolunteerSchedule
+    <VolunteerAvailability
       @input="changedDayPart"
       v-model="chosenDayPart"
       :chosenVolunteer="chosenVolunteer"
@@ -44,10 +44,10 @@
 
 <script>
 import VolunteerList from "@/components/VolunteerList";
-import VolunteerSchedule from "@/components/VolunteerSchedule";
+import VolunteerAvailability from "@/components/VolunteerAvailability";
 export default {
-  name: "VolunteerAppointment",
-  components: {VolunteerList, VolunteerSchedule},
+  name: "AvailableVolunteers",
+  components: {VolunteerList, VolunteerAvailability},
   data: () => ({
     tabIndex: 0,
     finalTab: 1,

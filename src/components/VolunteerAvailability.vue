@@ -1,8 +1,8 @@
 <template>
   <h3>Availability of {{ chosenVolunteer.name }}</h3>
-  <div class="card mt-4 overflow-auto">
+  <div class="card overflow-auto">
     <div class="list-group list-group-flush">
-      <AvailableDayPart
+      <RadioDayPart
         v-for="dayPart in futureAvailableDayParts"
         :dayPart="dayPart"
         :key="dayPart"
@@ -10,13 +10,14 @@
       />
     </div>
   </div>
+  <p v-if="futureAvailableDayParts.length === 0">Volunteer is currently not available!</p>
 </template>
 
 <script>
-import AvailableDayPart from "@/components/AvailableDayPart";
+import RadioDayPart from "@/components/RadioDayPart";
 export default {
-  name: "VolunteerSchedule",
-  components: {AvailableDayPart},
+  name: "VolunteerAvailability",
+  components: {RadioDayPart},
   props: {
     chosenVolunteer: {
       required: true

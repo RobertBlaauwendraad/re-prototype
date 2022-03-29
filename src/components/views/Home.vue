@@ -8,7 +8,7 @@
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dui vestibulum, lobortis sem vehicula, euismod nisi.
           </p>
-          <router-link :to="{name: 'volunteer-appointment'}" class="btn btn-outline-light">Create appointment</router-link>
+          <router-link :to="{name: 'available-volunteers'}" class="btn btn-outline-light">See available volunteers</router-link>
         </div>
       </div>
       <div class="col-md-6 mb-4">

@@ -20,7 +20,7 @@
 import {capitalize} from "vue";
 
 export default {
-  name: "AvailableDay",
+  name: "RadioDayPart",
   props: {
     dayPart: {
       required: true
