@@ -9,6 +9,7 @@
         <div class="navbar-nav">
           <router-link class="nav-link" :to="{name: 'home'}">Home</router-link>
           <router-link class="nav-link" :to="{name: 'available-volunteers'}">Available volunteers</router-link>
+          <router-link class="nav-link" :to="{name: 'contacts'}">Contacts</router-link>
         </div>
       </div>
     </div>

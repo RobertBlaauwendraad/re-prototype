@@ -1,6 +1,7 @@
 import Home from "@/components/views/Home";
 import AvailableVolunteers from "@/components/views/AvailableVolunteers";
 import {createRouter, createWebHistory} from 'vue-router'
+import Contacts from "@/components/views/Contacts";
 
 const routes = [
   {
@@ -30,11 +31,29 @@ const routes = [
       metaTags: [
         {
           name: 'description',
-          content: 'The Available Volunteers page of our prototype.'
+          content: 'The available volunteers page of our prototype.'
         },
         {
           property: 'og:description',
-          content: 'The Available Volunteers page of our prototype.'
+          content: 'The available volunteers page of our prototype.'
+        }
+      ]
+    }
+  },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    component: Contacts,
+    meta: {
+      title: 'Contacts - Prototype',
+      metaTags: [
+        {
+          name: 'description',
+          content: 'The contacts page of our prototype.'
+        },
+        {
+          property: 'og:description',
+          content: 'The contacts page of our prototype.'
         }
       ]
     }

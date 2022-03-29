@@ -20,6 +20,7 @@
           v-on:click="prevTab"
         >
           <font-awesome-icon icon="arrow-left" />
+          Back
         </button>
         <button
           class="btn "
@@ -27,6 +28,7 @@
           v-on:click="nextTab"
           v-if="tabIndex !== finalTab"
         >
+          Next
           <font-awesome-icon icon="arrow-right" />
         </button>
         <button
@@ -36,6 +38,7 @@
           v-if="tabIndex === finalTab"
         >
           Confirm
+          <font-awesome-icon icon="check" />
         </button>
       </div>
     </div>

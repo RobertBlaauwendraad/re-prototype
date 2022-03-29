@@ -17,7 +17,7 @@
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut dui vestibulum, lobortis sem vehicula, euismod nisi.
           </p>
-            <router-link class="btn btn-outline-light disabled" to="">Not yet implemented</router-link>
+            <router-link class="btn btn-outline-light disabled" to="">Not implemented yet</router-link>
         </div>
       </div>
     </div>
