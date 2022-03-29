@@ -1,7 +1,7 @@
 <template>
   <MainHeader/>
   <div class="container py-4">
-    <div class="row align-items-md-stretch">
+    <div class="row">
       <div class="col-md-6 mb-4">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
           <h2>Receive help from a volunteer!</h2>
@@ -11,7 +11,7 @@
           <router-link :to="{name: 'volunteer-appointment'}" class="btn btn-outline-light">Create appointment</router-link>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 mb-4">
         <div class="h-100 p-5 text-white bg-dark rounded-3">
           <h2>Become a volunteer!</h2>
           <p>

@@ -1,5 +1,6 @@
 <template>
   <Navbar/>
+  <div class="navbar-height"></div>
   <router-view/>
 </template>
 

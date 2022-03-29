@@ -15,17 +15,16 @@
       <div class="col d-flex justify-content-between">
         <button
           class="btn btn-danger"
-          v-on:click="prevTab"
           :class="{invisible: tabIndex === 0}"
+          v-on:click="prevTab"
         >
           <font-awesome-icon icon="arrow-left" />
-          Select different volunteer
         </button>
         <button
-          class="btn btn-success"
+          class="btn "
+          :class="chosenVolunteer ? 'btn-success' : 'btn-outline-success disabled'"
           v-on:click="nextTab"
         >
-          {{ (tabIndex === 0 ? 'Check availabilty' : 'Confirm selection') }}
           <font-awesome-icon icon="arrow-right" />
         </button>
       </div>
@@ -41,6 +40,7 @@ export default {
   components: {VolunteerList, VolunteerSchedule},
   data: () => ({
     tabIndex: 0,
+    firstTabButtonString: 'Select volunteer first',
     chosenVolunteer: '',
     volunteers: [
       {
@@ -84,6 +84,7 @@ export default {
     },
     changedVolunteer (volunteer) {
       this.chosenVolunteer = volunteer
+      this.firstTabButtonString = 'Check availability'
     }
   }
 }
