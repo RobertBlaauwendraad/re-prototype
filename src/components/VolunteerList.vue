@@ -5,7 +5,7 @@
         v-for="volunteer in volunteers"
         :volunteer="volunteer"
         :key="volunteer"
-        @change="$emit('input', volunteer)"
+        @input="changedVolunteer"
       />
     </div>
   </div>
@@ -20,6 +20,15 @@ export default {
     volunteers: {
       required: true,
       type: Array
+    }
+  },
+  data: () => ({
+    chosenVolunteer: ''
+  }),
+  methods: {
+    changedVolunteer (volunteer) {
+      this.chosenVolunteer = volunteer
+      this.$emit('input', this.chosenVolunteer)
     }
   }
 }
