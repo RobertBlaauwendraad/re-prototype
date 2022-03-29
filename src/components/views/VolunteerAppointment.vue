@@ -3,10 +3,11 @@
     <VolunteerList
       @input="changedVolunteer"
       v-model="chosenVolunteer"
-      :volunteers="volunteers"
       v-if="tabIndex === 0"
     />
     <VolunteerSchedule
+      @input="changedDayPart"
+      v-model="chosenDayPart"
       :chosenVolunteer="chosenVolunteer"
       v-if="tabIndex === 1"
     />
@@ -24,8 +25,17 @@
           class="btn "
           :class="chosenVolunteer ? 'btn-success' : 'btn-outline-success disabled'"
           v-on:click="nextTab"
+          v-if="tabIndex !== finalTab"
         >
           <font-awesome-icon icon="arrow-right" />
+        </button>
+        <button
+          class="btn "
+          :class="chosenDayPart ? 'btn-success' : 'btn-outline-success disabled'"
+          v-on:click="nextTab"
+          v-if="tabIndex === finalTab"
+        >
+          Confirm
         </button>
       </div>
     </div>
@@ -40,40 +50,9 @@ export default {
   components: {VolunteerList, VolunteerSchedule},
   data: () => ({
     tabIndex: 0,
-    firstTabButtonString: 'Select volunteer first',
+    finalTab: 1,
     chosenVolunteer: '',
-    volunteers: [
-      {
-        id: 1,
-        name: "Robert Blaauwendraad",
-        date: 3,
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sodales ligula sed ante rhoncus faucibus. Donec luctus, velit quis sollicitudin pulvinar, neque leo pellentesque est, sollicitudin mattis risus ligula a ante. Suspendisse vel massa eu elit rutrum maximus eget et velit. Donec vitae lacus eu justo laoreet porttitor eu et tortor. In aliquam nibh non nunc ullamcorper lobortis. Fusce elit lectus, posuere eu vestibulum et, iaculis non ante. Nullam ut venenatis sapien. Nullam vitae enim nibh. Integer molestie eget nibh nec mattis. Morbi in ipsum in nisl pulvinar lacinia ac a nunc. Praesent lectus lacus, fermentum vitae ipsum in, pharetra consectetur risus. Pellentesque ultricies odio id diam consectetur finibus. Proin non lacinia augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper felis ut leo porttitor, lacinia elementum leo sollicitudin. Donec vehicula neque elit.",
-      },
-      {
-        id: 2,
-        name: "Siem Kleuskens",
-        date: 2,
-        description: "Nulla imperdiet tristique lectus, in vehicula mi vulputate in. Sed posuere at nisi non gravida. Proin non diam at quam convallis euismod id sed lacus. In eget justo leo. Sed eu purus maximus, lacinia lorem nec, sodales leo. In vulputate fringilla velit, non lobortis dolor rutrum quis. Vivamus id lectus vel risus aliquam elementum. Donec rhoncus consequat ullamcorper. Donec eleifend lacus in leo lobortis aliquet. Aliquam vel enim tincidunt, laoreet tortor a, elementum quam. Praesent ultricies dolor a orci ullamcorper lacinia. Nunc convallis sodales enim in feugiat. Nullam nec arcu orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ut porta ligula. In ornare, ante nec tristique pharetra, odio justo gravida libero, dapibus rutrum sem diam quis augue.",
-      },
-      {
-        id: 3,
-        name: "Casper Fabritius",
-        date: 4,
-        description: "Aenean et libero ut risus tincidunt finibus sit amet ac dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ac lorem vitae ipsum pulvinar sagittis. Integer tincidunt nisl at consectetur ultricies. Mauris hendrerit imperdiet congue. Etiam sed gravida leo, id dignissim lorem. Aenean venenatis nisl vitae ipsum commodo, euismod aliquet odio luctus. Ut faucibus tincidunt vulputate. Etiam sagittis velit eu scelerisque aliquam. In maximus porttitor massa. Proin elementum id magna condimentum mollis.",
-      },
-      {
-        id: 4,
-        name: "Jonathan Brandsen",
-        date: 6,
-        description: "Nullam sed turpis ultricies, mattis odio sed, tincidunt nisl. Pellentesque ac lorem ac sapien egestas consectetur sit amet a sem. Duis sodales orci in fermentum sollicitudin. Aliquam quis velit euismod, dictum magna et, tincidunt ligula. Maecenas sed dolor vitae dolor feugiat rhoncus. Vivamus nec tincidunt turpis. Mauris neque neque, euismod eu nisl eu, egestas gravida est. Sed vel nisl id risus pulvinar vestibulum. Nulla posuere in augue sed porta. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vestibulum ac laoreet erat, a cursus augue. Ut eu ex quam.",
-      },
-      {
-        id: 5,
-        name: "John Doe",
-        date: 1,
-        description: "Aenean et libero ut risus tincidunt finibus sit amet ac dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ac lorem vitae ipsum pulvinar sagittis. Integer tincidunt nisl at consectetur ultricies. Mauris hendrerit imperdiet congue. Etiam sed gravida leo, id dignissim lorem. Aenean venenatis nisl vitae ipsum commodo, euismod aliquet odio luctus. Ut faucibus tincidunt vulputate. Etiam sagittis velit eu scelerisque aliquam. In maximus porttitor massa. Proin elementum id magna condimentum mollis.",
-      },
-    ]
+    chosenDayPart: ''
   }),
   methods: {
     prevTab () {
@@ -90,7 +69,9 @@ export default {
     },
     changedVolunteer (volunteer) {
       this.chosenVolunteer = volunteer
-      this.firstTabButtonString = 'Check availability'
+    },
+    changedDayPart (dayPart) {
+      this.chosenDayPart = dayPart
     }
   }
 }

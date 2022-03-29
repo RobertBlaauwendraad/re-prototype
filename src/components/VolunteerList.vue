@@ -13,17 +13,13 @@
 
 <script>
 import AvailableVolunteer from "@/components/AvailableVolunteer";
+import volunteers from "@/assets/js/volunteers"
 export default {
   name: "VolunteerList",
   components: {AvailableVolunteer},
-  props: {
-    volunteers: {
-      required: true,
-      type: Array
-    }
-  },
   data: () => ({
-    chosenVolunteer: ''
+    chosenVolunteer: '',
+    volunteers
   }),
   methods: {
     changedVolunteer (volunteer) {
