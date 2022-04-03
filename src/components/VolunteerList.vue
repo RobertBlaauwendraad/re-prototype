@@ -15,14 +15,24 @@
 
 <script>
 import RadioVolunteer from "@/components/RadioVolunteer";
-import volunteers from "@/assets/js/volunteers"
 export default {
   name: "VolunteerList",
+  emits: ["input"],
   components: {RadioVolunteer},
   data: () => ({
     chosenVolunteer: '',
-    volunteers
+    volunteers: []
   }),
+  mounted() {
+    this.axios.get('/volunteers')
+
+      .then((response) => {
+        this.volunteers = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  },
   methods: {
     changedVolunteer (volunteer) {
       this.chosenVolunteer = volunteer

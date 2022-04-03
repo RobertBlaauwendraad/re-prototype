@@ -4,13 +4,12 @@
           @change="$emit('input', volunteer)"
     />
     <div class="list-group-item list-group-item-action d-flex" :class="{active: this.$parent.chosenVolunteer === volunteer}">
-      <div class="me-3">
-        <img class="object-fit" width="100" height="100" src="@/assets/img/person.jpg" alt="portrait">
-      </div>
+<!--      <div class="me-3">-->
+<!--        <img class="object-fit" width="100" height="100" src="@/assets/img/person.jpg" alt="portrait">-->
+<!--      </div>-->
       <div class="flex-grow-1">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 fw-bold">{{ volunteer.name }}</h5>
-          <small>{{ volunteer.date }} days ago</small>
+          <h5 class="mb-1 fw-bold">{{ volunteer.firstName + ' ' + volunteer.lastName}}</h5>
         </div>
         <p class="mb-1">
           {{ volunteer.description }}
@@ -24,6 +23,7 @@
 <script>
 export default {
   name: "RadioVolunteer",
+  // emits: ["input"],
   props: {
     volunteer: {
       required: true,

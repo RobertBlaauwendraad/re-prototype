@@ -1,8 +1,7 @@
 'use strict';
 
-const dbConnector = require('./../../config/db.config');
+const dbConnector = require("../../../config/db.config");
 
-// Employee object create
 const Volunteer = function (volunteer) {
   this.firstName = volunteer.firstName;
   this.lastName = volunteer.lastName;
@@ -11,6 +10,7 @@ const Volunteer = function (volunteer) {
   this.password = volunteer.password;
   this.description = volunteer.description;
 };
+
 
 Volunteer.create = function (newVol, result) {
   dbConnector.query("INSERT INTO Volunteer set ?", newVol, function (err, res) {
