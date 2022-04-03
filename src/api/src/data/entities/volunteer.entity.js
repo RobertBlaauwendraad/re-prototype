@@ -11,15 +11,13 @@ const Volunteer = function (volunteer) {
   this.description = volunteer.description;
 };
 
-
 Volunteer.create = function (newVol, result) {
   dbConnector.query("INSERT INTO Volunteer set ?", newVol, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(err, null);
     } else{
-      console.log(res.insertId);
-      result(null, res.insertId);
+      result(null, res);
     }
   });
 };
@@ -68,7 +66,29 @@ Volunteer.delete = function (id, result) {
     if(err) {
       console.log("error: ", err);
       result(null, err);
-    } else{
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Volunteer.getAvailabilityById = function (id, result) {
+  dbConnector.query("SELECT * FROM Availability WHERE volunteerId = ?", id, function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(null, err);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Volunteer.getActivitiesById = function (id, result) {
+  dbConnector.query("SELECT A.id, A.name, A.description FROM Activity A JOIN VolunteerActivity AC ON A.id = AC.activityId WHERE AC.volunteerId = ?", id, function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(null, err);
+    } else {
       result(null, res);
     }
   });

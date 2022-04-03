@@ -16,3 +16,29 @@ exports.findAll = function (req, res) {
     res.send(limitedVolunteers);
   });
 };
+
+exports.findById = function(req, res) {
+  Volunteer.findById(req.params.id, function(err, volunteer) {
+    if (err)
+      res.send(err);
+    res.json(volunteer);
+  });
+};
+
+exports.getAvailabilityById = function (req, res) {
+  Volunteer.getAvailabilityById(req.params.id,function (err, availability) {
+    if (err) {
+      res.send(err);
+    }
+    res.send(availability);
+  });
+}
+
+exports.getActivitiesById = function (req, res) {
+  Volunteer.getActivitiesById(req.params.id, function (err, activities) {
+    if (err) {
+      res.send(err);
+    }
+    res.send(activities);
+  })
+}

@@ -25,7 +25,6 @@ export default {
   }),
   mounted() {
     this.axios.get('/volunteers')
-
       .then((response) => {
         this.volunteers = response.data;
       })
@@ -35,6 +34,7 @@ export default {
   },
   methods: {
     changedVolunteer (volunteer) {
+      console.log(volunteer)
       this.chosenVolunteer = volunteer
       this.$emit('input', this.chosenVolunteer)
     }

@@ -6,8 +6,8 @@
       v-if="tabIndex === 0"
     />
     <VolunteerAvailability
-      @input="changedDayPart"
-      v-model="chosenDayPart"
+      @input="changedDaytime"
+      v-model="chosenDaytime"
       :chosenVolunteer="chosenVolunteer"
       v-if="tabIndex === 1"
     />
@@ -33,7 +33,7 @@
         </button>
         <button
           class="btn "
-          :class="chosenDayPart ? 'btn-success' : 'btn-outline-success disabled'"
+          :class="chosenDaytime ? 'btn-success' : 'btn-outline-success disabled'"
           v-on:click="nextTab"
           v-if="tabIndex === finalTab"
         >
@@ -55,7 +55,7 @@ export default {
     tabIndex: 0,
     finalTab: 1,
     chosenVolunteer: '',
-    chosenDayPart: ''
+    chosenDaytime: ''
   }),
   methods: {
     prevTab () {
@@ -73,8 +73,8 @@ export default {
     changedVolunteer (volunteer) {
       this.chosenVolunteer = volunteer
     },
-    changedDayPart (dayPart) {
-      this.chosenDayPart = dayPart
+    changedDaytime (daytime) {
+      this.chosenDaytime = daytime
     }
   }
 }

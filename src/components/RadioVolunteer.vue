@@ -9,8 +9,9 @@
 <!--      </div>-->
       <div class="flex-grow-1">
         <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1 fw-bold">{{ volunteer.firstName + ' ' + volunteer.lastName}}</h5>
+          <h5 class="mb-0 fw-bold">{{ volunteer.firstName + ' ' + volunteer.lastName}}</h5>
         </div>
+        <p class="mb-2 text-muted">{{ this.activitiesString.slice(0, -3) }}</p>
         <p class="mb-1">
           {{ volunteer.description }}
         </p>
@@ -28,6 +29,21 @@ export default {
     volunteer: {
       required: true,
     }
+  },
+  data: () => ({
+    activitiesString: ''
+  }),
+  mounted() {
+    this.axios.get(`/volunteers/${this.volunteer.id}/activities`)
+      .then((response) => {
+        const activities = response.data;
+        for (const activity of activities) {
+          this.activitiesString += activity.name + ' / '
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 }
 </script>
