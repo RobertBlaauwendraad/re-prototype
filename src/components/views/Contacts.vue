@@ -1,7 +1,7 @@
 <template>
   <div class="container py-4">
     <h3 class="mb-0">Contacts</h3>
-    <div class="row row-cols-1 row-cols-lg-auto justify-content-center m-0">
+    <div class="row row-cols-1 row-cols-lg-4 justify-content-center m-0">
         <ContactCard
           v-for="contact in contacts"
           :contact="contact"

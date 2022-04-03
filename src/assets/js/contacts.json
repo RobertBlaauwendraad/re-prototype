@@ -1,66 +1,98 @@
 [
   {
     "id": 0,
-    "name": "Jeanette Holloway",
-    "email": "jeanetteholloway@ecstasia.com"
+    "name": "Molina Wolf",
+    "email": "molinawolf@silodyne.com",
+    "phoneNumber": "",
+    "emailShared": true,
+    "phoneNumberShared": false
   },
   {
     "id": 1,
-    "name": "Josefa Hewitt",
-    "phoneNumber": "(06) 82256834"
+    "name": "Allyson Joyner",
+    "email": "",
+    "phoneNumber": "(06) 98954730",
+    "emailShared": true,
+    "phoneNumberShared": true
   },
   {
     "id": 2,
-    "name": "Bertie Craft"
+    "name": "Tamika King",
+    "email": "tamikaking@silodyne.com",
+    "phoneNumber": "(06) 84749833",
+    "emailShared": true,
+    "phoneNumberShared": true
   },
   {
     "id": 3,
-    "name": "Penelope Ryan",
-    "email": "peneloperyan@ecstasia.com",
-    "phoneNumber": "(06) 89251535"
+    "name": "Chelsea Hester",
+    "email": "",
+    "phoneNumber": "",
+    "emailShared": false,
+    "phoneNumberShared": true
   },
   {
     "id": 4,
-    "name": "Chandra Bishop",
-    "email": "chandrabishop@ecstasia.com"
+    "name": "Gretchen Moore",
+    "email": "gretchenmoore@silodyne.com",
+    "phoneNumber": "(06) 80050825",
+    "emailShared": true,
+    "phoneNumberShared": false
   },
   {
     "id": 5,
-    "name": "Strong Osborne",
-    "email": "strongosborne@ecstasia.com"
+    "name": "Cannon West",
+    "email": "cannonwest@silodyne.com",
+    "phoneNumber": "(06) 97357925",
+    "emailShared": false,
+    "phoneNumberShared": true
   },
   {
     "id": 6,
-    "name": "Harmon Ramsey",
-    "email": "harmonramsey@ecstasia.com"
+    "name": "Patrick Valentine",
+    "email": "patrickvalentine@silodyne.com",
+    "phoneNumber": "(06) 80849636",
+    "emailShared": false,
+    "phoneNumberShared": true
   },
   {
     "id": 7,
-    "name": "Cain Harrington",
-    "email": "cainharrington@ecstasia.com"
+    "name": "Serena Stanley",
+    "email": "serenastanley@silodyne.com",
+    "phoneNumber": "(06) 87045237",
+    "emailShared": false,
+    "phoneNumberShared": true
   },
   {
     "id": 8,
-    "name": "Ramirez Herman",
-    "email": "ramirezherman@ecstasia.com",
-    "phoneNumber": "(06) 97544430"
+    "name": "Mccoy Munoz",
+    "email": "mccoymunoz@silodyne.com",
+    "phoneNumber": "(06) 97743238",
+    "emailShared": true,
+    "phoneNumberShared": true
   },
   {
     "id": 9,
-    "name": "Lynette Gardner",
-    "email": "lynettegardner@ecstasia.com",
-    "phoneNumber": "(06) 94640325"
+    "name": "Shelia Zamora",
+    "email": "sheliazamora@silodyne.com",
+    "phoneNumber": "(06) 81940926",
+    "emailShared": false,
+    "phoneNumberShared": true
   },
   {
     "id": 10,
-    "name": "Doreen Vang",
-    "email": "doreenvang@ecstasia.com",
-    "phoneNumber": "(06) 93854129"
+    "name": "Gomez Cotton",
+    "email": "gomezcotton@silodyne.com",
+    "phoneNumber": "(06) 96059438",
+    "emailShared": false,
+    "phoneNumberShared": false
   },
   {
     "id": 11,
-    "name": "Pennington Mcfarland",
-    "email": "penningtonmcfarland@ecstasia.com",
-    "phoneNumber": "(06) 82341722"
+    "name": "Aisha Clayton",
+    "email": "aishaclayton@silodyne.com",
+    "phoneNumber": "(06) 81451132",
+    "emailShared": false,
+    "phoneNumberShared": true
   }
 ]
