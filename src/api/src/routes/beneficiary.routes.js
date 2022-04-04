@@ -5,4 +5,10 @@ const beneficiaryController = require('../ui/controllers/beneficiary.controller'
 // Retrieve activities of beneficiary
 router.get('/:id/activities', beneficiaryController.getActivitiesById);
 
+// Add activity to beneficiary
+router.post('/:beneficiaryId/activities/:activityId', beneficiaryController.insertActivityById);
+
+// Delete activity of beneficiary
+router.delete('/:beneficiaryId/activities/:activityId', beneficiaryController.deleteActivityById);
+
 module.exports = router;

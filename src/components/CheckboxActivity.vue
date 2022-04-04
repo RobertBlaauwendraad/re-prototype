@@ -5,9 +5,9 @@
       name="availableVolunteer"
       :value="modelValue"
       :id="activity.id"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="updateStore"
     />
-    <div class="list-group-item list-group-item-action d-flex" :class="{active: this.$parent.chosenActivity === activity}">
+    <div class="list-group-item list-group-item-action d-flex" :class="{active: isActive}">
       <div class="flex-grow-1">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1 fw-bold">{{ capitalize(activity.name) }}</h5>
@@ -22,9 +22,17 @@
 
 <script>
 import {capitalize} from "vue";
+import {useBeneficiaryStore} from "@/stores/beneficiary";
 
 export default {
   name: "CheckboxActivity",
+  setup() {
+    const beneficiaryStore = useBeneficiaryStore()
+
+    return {
+      beneficiaryStore
+    }
+  },
   props: {
     modelValue: {
       required: true
@@ -33,10 +41,33 @@ export default {
       required: true
     }
   },
+  emits: ['update:modelValue'],
+  data: () => ({
+    isActive: false
+  }),
   methods: {
     capitalize (string) {
       return capitalize(string);
+    },
+    async updateStore () {
+      if (this.isActive) {
+        await this.beneficiaryStore.deleteActivity(this.activity.id)
+      } else {
+        await this.beneficiaryStore.insertActivity(this.activity.id)
+      }
+      this.updateIsActive()
+    },
+    updateIsActive () {
+      this.isActive = false;
+      for (const beneficialActivity of this.beneficiaryStore.getActivities) {
+        if (beneficialActivity.id === this.activity.id) {
+          this.isActive = true;
+        }
+      }
     }
+  },
+  mounted() {
+    this.updateIsActive();
   }
 }
 </script>

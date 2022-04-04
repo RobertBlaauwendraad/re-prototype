@@ -3,68 +3,44 @@
   <p v-if="activities.length === 0">No activities are available!</p>
   <div v-else class="card overflow-auto">
     <div class="list-group list-group-flush">
-      <label
+      <CheckboxActivity
         v-for="activity in activities"
         :key="activity.id"
-        class="volunteer-label"
-        :for="activity.id">
-        <input
-          type="checkbox"
-          name="availableVolunteer"
-          :value="activity"
-          :id="activity.id"
-          v-model="checkedActivities"
-        />
-        <div class="list-group-item list-group-item-action d-flex" :class="{active: checkedActivities.includes(activity)}">
-          <div class="flex-grow-1">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1 fw-bold">{{ capitalize(activity.name) }}</h5>
-            </div>
-            <p class="mb-1">
-              {{ activity.description }}
-            </p>
-          </div>
-        </div>
-      </label>
-    </div>
-  </div>
-  <div class="row my-4">
-    <div class="col d-flex justify-content-end">
-      <button
-        class="btn "
-        :class="checkedActivities.length > 0 ? 'btn-success' : 'btn-outline-success '"
-        v-on:click="confirmedSelection"
-      >
-        Confirm
-        <font-awesome-icon icon="check" />
-      </button>
+        :activity="activity"
+        model-value="activity.id"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import {capitalize} from "vue";
+import CheckboxActivity from "@/components/CheckboxActivity";
+import {useBeneficiaryStore} from "@/stores/beneficiary";
 export default {
   name: "BeneficiaryActivity",
-  components: {},
+  components: {CheckboxActivity},
+  setup() {
+    const beneficiaryStore = useBeneficiaryStore()
+
+    return {
+      beneficiaryStore
+    }
+  },
   data: () => ({
     checkedActivities: [],
+    currentBeneficiary: 1,
     activities: []
   }),
   methods: {
-    // changedActivity (activity) {
-    //   this.chosenActivity = activity
-    //   this.$emit('input', this.chosenActivity)
-    // },
-    confirmedSelection () {
-      console.log(this.checkedActivities)
-    },
     capitalize (string) {
       return capitalize(string);
     }
   },
+  created() {
+    this.beneficiaryStore.fetchActivities();
+  },
   mounted() {
-    // Gets all activities
     this.axios.get('/activities')
       .then((response) => {
         this.activities = response.data;
@@ -72,8 +48,6 @@ export default {
       .catch((error) => {
         console.log(error);
       })
-
-    // Gets all activities of current user
   }
 }
 </script>

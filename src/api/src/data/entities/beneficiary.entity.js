@@ -15,7 +15,29 @@ Beneficiary.getActivitiesById = function (id, result) {
   dbConnector.query("SELECT A.id, A.name, A.description FROM Activity A JOIN BeneficiaryActivity BA ON A.id = BA.activityId WHERE BA.beneficiaryId = ?", id, function (err, res) {
     if(err) {
       console.log("error: ", err);
-      result(null, err);
+      result(err, null);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Beneficiary.insertActivityById = function (beneficiaryId, activityId, result) {
+  dbConnector.query("INSERT INTO BeneficiaryActivity VALUES (?, ?)", [beneficiaryId, activityId], function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(err, null);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
+Beneficiary.deleteActivityById = function (beneficiaryId, activityId, result) {
+  dbConnector.query("DELETE FROM BeneficiaryActivity WHERE beneficiaryId = ? AND activityId = ?", [beneficiaryId, activityId], function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(err, null);
     } else {
       result(null, res);
     }
