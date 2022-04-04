@@ -33,6 +33,9 @@ app.use('/api/v1/beneficiaries', beneficiaryRoutes)
 const activityRoutes = require('./src/routes/activity.routes')
 app.use('/api/v1/activities', activityRoutes)
 
+const bookingRoutes = require('./src/routes/booking.routes')
+app.use('/api/v1/bookings', bookingRoutes)
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })

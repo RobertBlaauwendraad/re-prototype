@@ -38,7 +38,7 @@ Volunteer.findAll = function (result) {
   dbConnector.query("SELECT * FROM Volunteer", function (err, res) {
     if(err) {
       console.log("error: ", err);
-      result(null, err);
+      result(err, null);
     } else{
       result(null, res);
     }
@@ -52,7 +52,7 @@ Volunteer.update = function (id, volunteer, result) {
     function (err, res) {
       if(err) {
         console.log("error: ", err);
-        result(null, err);
+        result(err, null);
       } else{
         result(null, res);
       }
@@ -64,8 +64,8 @@ Volunteer.delete = function (id, result) {
   dbConnector.query("DELETE FROM Volunteer WHERE id = ?", [id], function (err, res) {
     if(err) {
       console.log("error: ", err);
-      result(null, err);
-    } else {
+      result(err, null);
+    } else{
       result(null, res);
     }
   });
@@ -75,8 +75,8 @@ Volunteer.getAvailabilityById = function (id, result) {
   dbConnector.query("SELECT * FROM Availability WHERE volunteerId = ?", id, function (err, res) {
     if(err) {
       console.log("error: ", err);
-      result(null, err);
-    } else {
+      result(err, null);
+    } else{
       result(null, res);
     }
   });
@@ -86,8 +86,8 @@ Volunteer.getActivitiesById = function (id, result) {
   dbConnector.query("SELECT A.id, A.name, A.description FROM Activity A JOIN VolunteerActivity AC ON A.id = AC.activityId WHERE AC.volunteerId = ?", id, function (err, res) {
     if(err) {
       console.log("error: ", err);
-      result(null, err);
-    } else {
+      result(err, null);
+    } else{
       result(null, res);
     }
   });
