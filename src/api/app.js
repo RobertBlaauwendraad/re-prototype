@@ -25,6 +25,10 @@ app.get('/', (req, res) => {
 const volunteerRoutes = require('./src/routes/volunteer.routes')
 app.use('/api/v1/volunteers', volunteerRoutes)
 
+// Use beneficiary routes
+const beneficiaryRoutes = require('./src/routes/beneficiary.routes')
+app.use('/api/v1/beneficiaries', beneficiaryRoutes)
+
 // Use activity routes
 const activityRoutes = require('./src/routes/activity.routes')
 app.use('/api/v1/activities', activityRoutes)

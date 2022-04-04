@@ -64,6 +64,7 @@ export default {
     }
   },
   mounted() {
+    // Gets all activities
     this.axios.get('/activities')
       .then((response) => {
         this.activities = response.data;
@@ -71,6 +72,8 @@ export default {
       .catch((error) => {
         console.log(error);
       })
+
+    // Gets all activities of current user
   }
 }
 </script>
