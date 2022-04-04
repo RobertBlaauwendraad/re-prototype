@@ -11,6 +11,15 @@ exports.getActivitiesById = function (req, res) {
   })
 }
 
+exports.getVolunteersById = function (req, res) {
+  BeneficiaryEnitity.getVolunteersById(req.params.id, function (err, volunteers) {
+    if (err) {
+      res.send(err);
+    }
+    res.send(volunteers);
+  })
+}
+
 exports.insertActivityById = function (req, res) {
   BeneficiaryEnitity.insertActivityById(req.params.beneficiaryId, req.params.activityId, function (err, result) {
     if (err) {

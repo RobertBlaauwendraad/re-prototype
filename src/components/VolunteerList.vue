@@ -4,7 +4,7 @@
   <div v-else class="card overflow-auto">
     <div class="list-group list-group-flush">
       <RadioVolunteer
-        v-for="volunteer in volunteers"
+        v-for="volunteer in beneficiaryStore.getVolunteers"
         :volunteer="volunteer"
         :key="volunteer"
         @input="changedVolunteer"
@@ -15,14 +15,25 @@
 
 <script>
 import RadioVolunteer from "@/components/RadioVolunteer";
+import {useBeneficiaryStore} from "@/stores/beneficiary";
 export default {
   name: "VolunteerList",
-  emits: ["input"],
   components: {RadioVolunteer},
+  setup() {
+    const beneficiaryStore = useBeneficiaryStore()
+
+    return {
+      beneficiaryStore
+    }
+  },
+  emits: ["input"],
   data: () => ({
     chosenVolunteer: '',
     volunteers: []
   }),
+  created() {
+    this.beneficiaryStore.fetchVolunteers();
+  },
   mounted() {
     this.axios.get('/volunteers')
       .then((response) => {

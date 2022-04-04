@@ -22,6 +22,17 @@ Beneficiary.getActivitiesById = function (id, result) {
   });
 };
 
+Beneficiary.getVolunteersById = function (id, result) {
+  dbConnector.query("SELECT V.id, V.firstName, V.lastName, V.description FROM Volunteer V JOIN VolunteerActivity VA ON V.id = VA.volunteerId JOIN BeneficiaryActivity BA WHERE BA.beneficiaryId = ? AND VA.activityId = BA.activityId GROUP BY V.id", id, function (err, res) {
+    if(err) {
+      console.log("error: ", err);
+      result(err, null);
+    } else {
+      result(null, res);
+    }
+  });
+};
+
 Beneficiary.insertActivityById = function (beneficiaryId, activityId, result) {
   dbConnector.query("INSERT INTO BeneficiaryActivity VALUES (?, ?)", [beneficiaryId, activityId], function (err, res) {
     if(err) {
@@ -43,5 +54,6 @@ Beneficiary.deleteActivityById = function (beneficiaryId, activityId, result) {
     }
   });
 };
+
 
 module.exports = Beneficiary;

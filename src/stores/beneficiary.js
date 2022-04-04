@@ -3,14 +3,21 @@ import axios from "@/assets/js/axios";
 
 export const useBeneficiaryStore = defineStore('beneficiary', {
   state: () => ({
-    activities: []
+    id: 1,
+    activities: [],
+    volunteers: [],
   }),
   getters: {
-    getActivities: (state) => state.activities
+    getActivities: (state) => state.activities,
+    getVolunteers: (state) => state.volunteers
   },
   actions: {
+    async updateStore() {
+      await this.fetchActivities();
+      await this.fetchVolunteers();
+    },
     async fetchActivities() {
-      await axios.get('/beneficiaries/1/activities')
+      await axios.get(`/beneficiaries/${this.id}/activities`)
         .then((response) => {
           this.activities = response.data;
         })
@@ -18,19 +25,28 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
           console.log(error);
         })
     },
-    async insertActivity(activityId) {
-      await axios.post(`/beneficiaries/1/activities/${activityId}`)
+    async fetchVolunteers() {
+      await axios.get(`/beneficiaries/${this.id}/volunteers`)
+        .then((response) => {
+          this.volunteers = response.data;
+        })
         .catch((error) => {
           console.log(error);
         })
-      await this.fetchActivities();
+    },
+    async insertActivity(activityId) {
+      await axios.post(`/beneficiaries/${this.id}/activities/${activityId}`)
+        .catch((error) => {
+          console.log(error);
+        })
+      await this.updateStore();
     },
     async deleteActivity(activityId) {
-      await axios.delete(`/beneficiaries/1/activities/${activityId}`)
+      await axios.delete(`/beneficiaries/${this.id}/activities/${activityId}`)
         .catch((error) => {
           console.log(error);
         })
-      await this.fetchActivities();
+      await this.updateStore();
     }
   }
 })
