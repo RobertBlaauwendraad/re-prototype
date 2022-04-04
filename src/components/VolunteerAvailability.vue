@@ -1,6 +1,7 @@
 <template>
   <h3>Availability of {{ chosenVolunteer.firstName + ' ' + chosenVolunteer.lastName }}</h3>
-  <div class="card overflow-auto">
+  <p v-if="availability.length === 0">Volunteer is currently not available!</p>
+  <div v-else class="card overflow-auto">
     <div class="list-group list-group-flush">
       <RadioDaytime
         v-for="datetime in availability"
@@ -10,7 +11,6 @@
       />
     </div>
   </div>
-  <p v-if="availability.length === 0">Volunteer is currently not available!</p>
 </template>
 
 <script>

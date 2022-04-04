@@ -40,7 +40,6 @@ Volunteer.findAll = function (result) {
       console.log("error: ", err);
       result(null, err);
     } else{
-      console.log('volunteers : ', res);
       result(null, res);
     }
   });

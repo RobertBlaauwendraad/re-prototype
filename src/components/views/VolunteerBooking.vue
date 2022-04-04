@@ -49,7 +49,7 @@
 import VolunteerList from "@/components/VolunteerList";
 import VolunteerAvailability from "@/components/VolunteerAvailability";
 export default {
-  name: "AvailableVolunteers",
+  name: "VolunteerBooking",
   components: {VolunteerList, VolunteerAvailability},
   data: () => ({
     tabIndex: 0,
@@ -63,12 +63,14 @@ export default {
     },
     nextTab () {
       if (this.tabIndex === 1) {
-        this.confirmedVolunteer()
+        this.confirmedSelection()
       }
       this.tabIndex = 1;
     },
-    confirmedVolunteer () {
-      console.log(this.chosenVolunteer)
+    confirmedSelection () {
+    },
+    changedActivity (activity) {
+      this.chosenActivity = activity
     },
     changedVolunteer (volunteer) {
       this.chosenVolunteer = volunteer

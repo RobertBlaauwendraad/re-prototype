@@ -11,7 +11,7 @@
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-0 fw-bold">{{ volunteer.firstName + ' ' + volunteer.lastName}}</h5>
         </div>
-        <p class="mb-2 text-muted">{{ this.activitiesString.slice(0, -3) }}</p>
+        <p class="mb-2" :class="{'text-muted': this.$parent.chosenVolunteer !== volunteer}">{{ this.activitiesString.slice(0, -3) }}</p>
         <p class="mb-1">
           {{ volunteer.description }}
         </p>

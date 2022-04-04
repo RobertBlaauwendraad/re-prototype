@@ -1,6 +1,7 @@
 <template>
   <h3>Available volunteers</h3>
-  <div class="card overflow-auto">
+  <p v-if="volunteers.length === 0">No volunteers are currently available!</p>
+  <div v-else class="card overflow-auto">
     <div class="list-group list-group-flush">
       <RadioVolunteer
         v-for="volunteer in volunteers"
@@ -10,7 +11,6 @@
       />
     </div>
   </div>
-  <p v-if="volunteers.length === 0">No volunteers are currently available!</p>
 </template>
 
 <script>

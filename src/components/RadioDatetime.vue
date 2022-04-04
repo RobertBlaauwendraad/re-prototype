@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import {capitalize} from "vue";
 
 export default {
   name: "RadioDaytime",
@@ -39,11 +38,6 @@ export default {
 
     const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit' }
     this.partOfDay = dateTimeFrom.toLocaleTimeString("nl", timeOptions) + " - " + dateTimeTo.toLocaleTimeString("nl", timeOptions)
-  },
-  methods: {
-    capitalize (string) {
-      return capitalize(string)
-    }
   }
 }
 </script>

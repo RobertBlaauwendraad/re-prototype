@@ -1,6 +1,7 @@
 import Home from "@/components/views/Home";
-import AvailableVolunteers from "@/components/views/AvailableVolunteers";
 import {createRouter, createWebHistory} from 'vue-router'
+import AskForHelp from "@/components/views/AskForHelp";
+import VolunteerBooking from "@/components/views/VolunteerBooking";
 import Contacts from "@/components/views/Contacts";
 
 const routes = [
@@ -23,9 +24,27 @@ const routes = [
     }
   },
   {
+    path: '/ask-for-help',
+    name: 'ask-for-help',
+    component: AskForHelp,
+    meta: {
+      title: 'Ask for help - Prototype',
+      metaTags: [
+        {
+          name: 'description',
+          content: 'The ask for help page of our prototype.'
+        },
+        {
+          property: 'og:description',
+          content: 'The ask for help page of our prototype.'
+        }
+      ]
+    }
+  },
+  {
     path: '/available-volunteers',
     name: 'available-volunteers',
-    component: AvailableVolunteers,
+    component: VolunteerBooking,
     meta: {
       title: 'Available Volunteers - Prototype',
       metaTags: [

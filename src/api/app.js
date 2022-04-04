@@ -21,10 +21,13 @@ app.get('/', (req, res) => {
   res.send('Prototype REST API')
 })
 
-// Require volunteer routes
+// Use volunteer routes
 const volunteerRoutes = require('./src/routes/volunteer.routes')
-// Using as middleware
 app.use('/api/v1/volunteers', volunteerRoutes)
+
+// Use activity routes
+const activityRoutes = require('./src/routes/activity.routes')
+app.use('/api/v1/activities', activityRoutes)
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)

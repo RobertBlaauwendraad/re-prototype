@@ -6,7 +6,9 @@
   object-fit: cover;
 }
 
-input[type=radio] {
+input[type=radio],
+input[type=checkbox]
+{
   display: none;
 }
 

@@ -1,24 +1,24 @@
 'use strict';
 
-const Volunteer = require('../../data/entities/volunteer.entity');
-const LimitedVolunteer = require('../models/limited-volunteer.model');
+const VolunteerEntity = require('../../data/entities/volunteer.entity');
+const VolunteerModel = require('../models/volunteer.model');
 
 exports.findAll = function (req, res) {
-  Volunteer.findAll(function (err, volunteers) {
+  VolunteerEntity.findAll(function (err, volunteers) {
     if (err) {
       res.send(err);
     }
-    const limitedVolunteers = [];
+    const volunteerModels = [];
     for (const volunteer of volunteers) {
-      const limitedVolunteer = new LimitedVolunteer(volunteer);
-      limitedVolunteers.push(limitedVolunteer)
+      const volunteerModel = new VolunteerModel(volunteer);
+      volunteerModels.push(volunteerModel);
     }
-    res.send(limitedVolunteers);
+    res.send(volunteerModels);
   });
 };
 
 exports.findById = function(req, res) {
-  Volunteer.findById(req.params.id, function(err, volunteer) {
+  VolunteerEntity.findById(req.params.id, function(err, volunteer) {
     if (err)
       res.send(err);
     res.json(volunteer);
@@ -26,7 +26,7 @@ exports.findById = function(req, res) {
 };
 
 exports.getAvailabilityById = function (req, res) {
-  Volunteer.getAvailabilityById(req.params.id,function (err, availability) {
+  VolunteerEntity.getAvailabilityById(req.params.id,function (err, availability) {
     if (err) {
       res.send(err);
     }
@@ -35,7 +35,7 @@ exports.getAvailabilityById = function (req, res) {
 }
 
 exports.getActivitiesById = function (req, res) {
-  Volunteer.getActivitiesById(req.params.id, function (err, activities) {
+  VolunteerEntity.getActivitiesById(req.params.id, function (err, activities) {
     if (err) {
       res.send(err);
     }
