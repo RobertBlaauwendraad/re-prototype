@@ -12,10 +12,6 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
     getVolunteers: (state) => state.volunteers
   },
   actions: {
-    async updateStore() {
-      await this.fetchActivities();
-      await this.fetchVolunteers();
-    },
     async fetchActivities() {
       await axios.get(`/beneficiaries/${this.id}/activities`)
         .then((response) => {
@@ -39,14 +35,18 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
         .catch((error) => {
           console.log(error);
         })
-      await this.updateStore();
+      // Fetch both activities and volunteers since both rely on activities
+      await this.fetchActivities();
+      await this.fetchVolunteers();
     },
     async deleteActivity(activityId) {
       await axios.delete(`/beneficiaries/${this.id}/activities/${activityId}`)
         .catch((error) => {
           console.log(error);
         })
-      await this.updateStore();
+      // Fetch both activities and volunteers since both rely on activities
+      await this.fetchActivities();
+      await this.fetchVolunteers();
     }
   }
 })
