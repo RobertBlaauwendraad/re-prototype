@@ -20,5 +20,10 @@ npm run build
 npm run lint
 ```
 
+### Run REST API
+```angular2html
+npm run start
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
