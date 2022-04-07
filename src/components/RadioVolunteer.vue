@@ -1,6 +1,6 @@
 <template>
-  <label class="volunteer-label" :for="volunteer.id">
-    <input type="radio" name="availableVolunteer" :value="volunteer.id" :id="volunteer.id"
+  <label :for="volunteer.id">
+    <input type="radio" name="volunteer" :value="volunteer.id" :id="volunteer.id"
           @change="beneficiaryStore.setChosenVolunteerId(volunteer.id)"
     />
     <div class="list-group-item list-group-item-action d-flex" :class="{active: beneficiaryStore.getChosenVolunteerId === volunteer.id}">
@@ -18,7 +18,6 @@
       </div>
     </div>
   </label>
-
 </template>
 
 <script>
@@ -40,8 +39,8 @@ export default {
   data: () => ({
     activitiesString: ''
   }),
-  mounted() {
-    this.axios.get(`/volunteers/${this.volunteer.id}/activities`)
+  async mounted() {
+    await this.axios.get(`/volunteers/${this.volunteer.id}/activities`)
       .then((response) => {
         const activities = response.data;
         for (const activity of activities) {

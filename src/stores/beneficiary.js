@@ -7,7 +7,7 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
     activities: [],
     volunteers: [],
     chosenVolunteerId: '',
-    chosenAvailabilityId: ''
+    chosenAvailabilityId: '',
   }),
   getters: {
     getActivities: (state) => state.activities,

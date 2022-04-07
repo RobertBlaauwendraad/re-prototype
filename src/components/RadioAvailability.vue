@@ -1,6 +1,6 @@
 <template>
-  <label class="volunteer-label" :for="availability.id">
-    <input type="radio" name="availableVolunteer" :value="availability.id" :id="availability.id"
+  <label :for="availability.id">
+    <input type="radio" name="availability" :value="availability.id" :id="availability.id"
            @change="beneficiaryStore.setChosenAvailabilityId(availability.id)"
     />
     <div class="list-group-item list-group-item-action d-flex" :class="{active: beneficiaryStore.getChosenAvailabilityId === availability.id}">

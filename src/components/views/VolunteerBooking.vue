@@ -47,12 +47,52 @@
       </div>
     </template>
   </div>
+  <div class="modal fade" ref="modalVolunteerActivity" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalVolunteerActivity" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Select activity to get help with</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card overflow-auto">
+            <div class="list-group list-group-flush">
+              <template
+                v-for="activity in volunteerActivities"
+                :key="activity"
+              >
+                <label :for="activity.name">
+                  <input type="radio" :name="activity" :value="activity.id" :id="activity.name"
+                    @change="changedActivity(activity.id)"
+                  />
+                  <div class="list-group-item list-group-item-action d-flex" :class="{active: chosenActivityId === activity.id}">
+                    <div class="flex-grow-1">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 fw-bold">{{ activity.name }}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              </template>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" aria-label="Close" :class="chosenActivityId ? 'btn-success' : 'btn-outline-success disabled'" v-on:click="tabIndex++">
+            Next
+            <font-awesome-icon icon="arrow-right" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import VolunteerList from "@/components/VolunteerList";
 import VolunteerAvailability from "@/components/VolunteerAvailability";
 import {useBeneficiaryStore} from "@/stores/beneficiary";
+import { Modal } from 'bootstrap'
 export default {
   name: "VolunteerBooking",
   components: {VolunteerList, VolunteerAvailability},
@@ -65,6 +105,8 @@ export default {
   data: () => ({
     tabIndex: 0,
     finalTab: 1,
+    volunteerActivities: [],
+    chosenActivityId: ''
   }),
   created () {
     this.beneficiaryStore.fetchActivities();
@@ -73,13 +115,41 @@ export default {
     prevTab () {
       this.tabIndex = 0;
     },
-    nextTab () {
-      if (this.tabIndex === 1) {
-        this.confirmedSelection()
+    async nextTab () {
+      const chosenVolunteerId = this.beneficiaryStore.getChosenVolunteerId;
+      await this.axios.get(`/volunteers/${chosenVolunteerId}/activities`)
+        .then((response) => {
+          this.volunteerActivities = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      if (this.tabIndex === 0 && this.volunteerActivities.length > 1) {
+        new Modal(this.$refs.modalVolunteerActivity).show();
+      } else if (this.tabIndex === 1 && this.volunteerActivities.length === 1) {
+        await this.confirmedSelection(this.volunteerActivities[0].id)
+      } else if (this.tabIndex === 1) {
+        await this.confirmedSelection(this.chosenActivityId)
       }
-      this.tabIndex = 1;
+      else {
+        this.tabIndex++;
+      }
     },
-    confirmedSelection () {
+    async confirmedSelection (activityId) {
+      const availabilityId = this.beneficiaryStore.getChosenAvailabilityId
+      await this.axios.post(`/bookings`, {
+        availabilityId,
+        activityId
+      })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    },
+    changedActivity (activityId) {
+      this.chosenActivityId = activityId;
     }
   }
 }

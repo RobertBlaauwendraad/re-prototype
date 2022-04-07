@@ -1,9 +1,8 @@
 <template>
-  <label class="volunteer-label" :for="activity.id">
+  <label :for="activity.id">
     <input
       type="checkbox"
-      name="availableVolunteer"
-      :value="modelValue"
+      name="checkboxActivity"
       :id="activity.id"
       @input="updateStore"
     />
@@ -28,20 +27,15 @@ export default {
   name: "CheckboxActivity",
   setup() {
     const beneficiaryStore = useBeneficiaryStore()
-
     return {
       beneficiaryStore
     }
   },
   props: {
-    modelValue: {
-      required: true
-    },
     activity: {
       required: true
     }
   },
-  emits: ['update:modelValue'],
   data: () => ({
     isActive: false
   }),

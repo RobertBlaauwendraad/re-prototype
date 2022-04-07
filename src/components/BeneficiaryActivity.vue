@@ -7,7 +7,6 @@
         v-for="activity in activities"
         :key="activity.id"
         :activity="activity"
-        model-value="activity.id"
       />
     </div>
   </div>

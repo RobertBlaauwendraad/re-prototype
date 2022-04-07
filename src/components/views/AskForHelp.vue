@@ -1,8 +1,6 @@
 <template>
   <div class="container d-flex flex-column volunteer-container py-4">
-    <BeneficiaryActivity
-      v-model="chosenActivities"
-    />
+    <BeneficiaryActivity/>
   </div>
 </template>
 
@@ -12,7 +10,6 @@ export default {
   name: "AskForHelp",
   components: {BeneficiaryActivity},
   data: () => ({
-    chosenActivities: []
   })
 }
 </script>

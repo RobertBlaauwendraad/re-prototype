@@ -16,7 +16,7 @@ exports.create = function (req, res) {
       }
       res.json({
         error: false,
-        message:"Employee added successfully!",
+        message:"Booking added successfully!",
         data:booking
       });
     })
