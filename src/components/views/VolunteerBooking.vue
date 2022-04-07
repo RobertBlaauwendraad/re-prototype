@@ -12,8 +12,6 @@
         v-if="tabIndex === 0"
       />
       <VolunteerAvailability
-        @input="changedDaytime"
-        v-model="chosenDaytime"
         v-if="tabIndex === 1"
       />
 
@@ -38,7 +36,7 @@
           </button>
           <button
             class="btn "
-            :class="chosenDaytime ? 'btn-success' : 'btn-outline-success disabled'"
+            :class="beneficiaryStore.getChosenAvailabilityId ? 'btn-success' : 'btn-outline-success disabled'"
             v-on:click="nextTab"
             v-if="tabIndex === finalTab"
           >
@@ -67,7 +65,6 @@ export default {
   data: () => ({
     tabIndex: 0,
     finalTab: 1,
-    chosenDaytime: ''
   }),
   created () {
     this.beneficiaryStore.fetchActivities();
@@ -83,12 +80,6 @@ export default {
       this.tabIndex = 1;
     },
     confirmedSelection () {
-    },
-    changedActivity (activity) {
-      this.chosenActivity = activity
-    },
-    changedDaytime (daytime) {
-      this.chosenDaytime = daytime
     }
   }
 }

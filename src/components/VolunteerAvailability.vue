@@ -1,24 +1,23 @@
 <template>
   <h3>Availability of {{ chosenVolunteer.firstName + ' ' + chosenVolunteer.lastName }}</h3>
-  <p v-if="availability.length === 0">Volunteer is currently not available!</p>
+  <p v-if="availabilities.length === 0">Volunteer is currently not available!</p>
   <div v-else class="card overflow-auto">
     <div class="list-group list-group-flush">
-      <RadioDaytime
-        v-for="datetime in availability"
-        :datetime="datetime"
-        :key="datetime"
-        @input="changedDatetime"
+      <RadioAvailability
+        v-for="availability in availabilities"
+        :availability="availability"
+        :key="availability"
       />
     </div>
   </div>
 </template>
 
 <script>
-import RadioDaytime from "@/components/RadioDatetime";
+import RadioAvailability from "@/components/RadioAvailability";
 import {useBeneficiaryStore} from "@/stores/beneficiary";
 export default {
   name: "VolunteerAvailability",
-  components: { RadioDaytime },
+  components: { RadioAvailability },
   setup() {
     const beneficiaryStore = useBeneficiaryStore()
     return {
@@ -26,17 +25,11 @@ export default {
     }
   },
   data: () => ({
-    chosenVolunteerId: '',
-    chosenVolunteer: {},
+    chosenVolunteerId: '', // Gets filled at created from store
+    chosenVolunteer: {}, // Gets filled at mounted after API call
     chosenDatetime: '',
-    availability: []
+    availabilities: [] // Gets filled at mounted after API call
   }),
-  methods: {
-    changedDatetime (daytime) {
-      this.chosenDatetime = daytime
-      this.$emit('input', this.chosenDatetime)
-    }
-  },
   async created() {
     this.chosenVolunteerId = this.beneficiaryStore.getChosenVolunteerId
   },
@@ -56,7 +49,7 @@ export default {
           const today = new Date().setHours(0, 0, 0, 0)
           const datetimeFrom = Date.parse(availabilityElement.datetimeFrom)
           if (today < datetimeFrom) {
-            this.availability.push(availabilityElement)
+            this.availabilities.push(availabilityElement)
           }
         }
       })

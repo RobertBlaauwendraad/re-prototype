@@ -6,12 +6,14 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
     id: 1,
     activities: [],
     volunteers: [],
-    chosenVolunteerId: ''
+    chosenVolunteerId: '',
+    chosenAvailabilityId: ''
   }),
   getters: {
     getActivities: (state) => state.activities,
     getVolunteers: (state) => state.volunteers,
-    getChosenVolunteerId: (state) => state.chosenVolunteerId
+    getChosenVolunteerId: (state) => state.chosenVolunteerId,
+    getChosenAvailabilityId: (state) => state.chosenAvailabilityId
   },
   actions: {
     async fetchActivities() {
@@ -51,8 +53,10 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
       await this.fetchVolunteers();
     },
     setChosenVolunteerId(id) {
-      console.log(id)
       this.chosenVolunteerId = id;
+    },
+    setChosenAvailabilityId(id) {
+      this.chosenAvailabilityId = id;
     }
   }
 })

@@ -1,7 +1,7 @@
 <template>
   <label class="volunteer-label" :for="volunteer.id">
     <input type="radio" name="availableVolunteer" :value="volunteer.id" :id="volunteer.id"
-          @change="changedVolunteer(volunteer.id)"
+          @change="beneficiaryStore.setChosenVolunteerId(volunteer.id)"
     />
     <div class="list-group-item list-group-item-action d-flex" :class="{active: beneficiaryStore.getChosenVolunteerId === volunteer.id}">
 <!--      <div class="me-3">-->
@@ -32,7 +32,6 @@ export default {
       beneficiaryStore
     }
   },
-  // emits: ["input"],
   props: {
     volunteer: {
       required: true,
@@ -52,11 +51,6 @@ export default {
       .catch((error) => {
         console.log(error);
       })
-  },
-  methods: {
-    changedVolunteer (id) {
-      this.beneficiaryStore.setChosenVolunteerId(id);
-    }
   }
 }
 </script>

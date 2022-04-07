@@ -1,9 +1,9 @@
 <template>
-  <label class="volunteer-label" :for="datetime.id">
-    <input type="radio" name="availableVolunteer" :value="datetime.id" :id="datetime.id"
-           @change="$emit('input', datetime)"
+  <label class="volunteer-label" :for="availability.id">
+    <input type="radio" name="availableVolunteer" :value="availability.id" :id="availability.id"
+           @change="beneficiaryStore.setChosenAvailabilityId(availability.id)"
     />
-    <div class="list-group-item list-group-item-action d-flex" :class="{active: this.$parent.chosenDatetime === datetime}">
+    <div class="list-group-item list-group-item-action d-flex" :class="{active: beneficiaryStore.getChosenAvailabilityId === availability.id}">
       <div class="flex-grow-1">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1 fw-bold">{{ this.date }}</h5>
@@ -18,11 +18,19 @@
 
 <script>
 
+import {useBeneficiaryStore} from "@/stores/beneficiary";
+
 export default {
-  name: "RadioDaytime",
+  name: "RadioAvailability",
   props: {
-    datetime: {
+    availability: {
       required: true
+    }
+  },
+  setup() {
+    const beneficiaryStore = useBeneficiaryStore()
+    return {
+      beneficiaryStore
     }
   },
   data: () => ({
@@ -30,8 +38,8 @@ export default {
     partOfDay: ''
   }),
   mounted() {
-    const dateTimeFrom = new Date(this.datetime.datetimeFrom);
-    const dateTimeTo = new Date(this.datetime.datetimeTo);
+    const dateTimeFrom = new Date(this.availability.datetimeFrom);
+    const dateTimeTo = new Date(this.availability.datetimeTo);
 
     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     this.date = dateTimeFrom.toLocaleDateString("en", dateOptions);
