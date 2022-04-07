@@ -1,19 +1,19 @@
 <template>
   <div class="container d-flex flex-column volunteer-container py-4">
-    <BeneficiaryActivity
-      v-if="beneficiaryStore.getActivities.length === 0"
-    />
+    <div class="row-cols-auto" v-if="beneficiaryStore.getActivities.length === 0">
+      <h3 class="col">Please first select the activity you need help with</h3>
+      <router-link to="ask-for-help">
+        <button class="btn btn-primary">Take me there</button>
+      </router-link>
+    </div>
 
     <template v-else>
       <VolunteerList
-        @input="changedVolunteer"
-        v-model="chosenVolunteer"
         v-if="tabIndex === 0"
       />
       <VolunteerAvailability
         @input="changedDaytime"
         v-model="chosenDaytime"
-        :chosenVolunteer="chosenVolunteer"
         v-if="tabIndex === 1"
       />
 
@@ -29,7 +29,7 @@
           </button>
           <button
             class="btn "
-            :class="chosenVolunteer ? 'btn-success' : 'btn-outline-success disabled'"
+            :class="beneficiaryStore.getChosenVolunteerId ? 'btn-success' : 'btn-outline-success disabled'"
             v-on:click="nextTab"
             v-if="tabIndex !== finalTab"
           >
@@ -55,13 +55,11 @@
 import VolunteerList from "@/components/VolunteerList";
 import VolunteerAvailability from "@/components/VolunteerAvailability";
 import {useBeneficiaryStore} from "@/stores/beneficiary";
-import BeneficiaryActivity from "@/components/BeneficiaryActivity";
 export default {
   name: "VolunteerBooking",
-  components: {BeneficiaryActivity, VolunteerList, VolunteerAvailability},
+  components: {VolunteerList, VolunteerAvailability},
   setup() {
     const beneficiaryStore = useBeneficiaryStore()
-
     return {
       beneficiaryStore
     }
@@ -69,9 +67,11 @@ export default {
   data: () => ({
     tabIndex: 0,
     finalTab: 1,
-    chosenVolunteer: '',
     chosenDaytime: ''
   }),
+  created () {
+    this.beneficiaryStore.fetchActivities();
+  },
   methods: {
     prevTab () {
       this.tabIndex = 0;
@@ -86,9 +86,6 @@ export default {
     },
     changedActivity (activity) {
       this.chosenActivity = activity
-    },
-    changedVolunteer (volunteer) {
-      this.chosenVolunteer = volunteer
     },
     changedDaytime (daytime) {
       this.chosenDaytime = daytime

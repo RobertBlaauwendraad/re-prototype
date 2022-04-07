@@ -55,9 +55,10 @@ export default {
       } else {
         await this.beneficiaryStore.insertActivity(this.activity.id)
       }
-      this.updateIsActive()
+      await this.updateIsActive()
     },
-    updateIsActive () {
+    async updateIsActive () {
+      await this.beneficiaryStore.fetchActivities();
       this.isActive = false;
       for (const beneficialActivity of this.beneficiaryStore.getActivities) {
         if (beneficialActivity.id === this.activity.id) {

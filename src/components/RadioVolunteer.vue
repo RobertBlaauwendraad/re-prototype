@@ -1,9 +1,9 @@
 <template>
   <label class="volunteer-label" :for="volunteer.id">
     <input type="radio" name="availableVolunteer" :value="volunteer.id" :id="volunteer.id"
-          @change="$emit('input', volunteer)"
+          @change="changedVolunteer(volunteer.id)"
     />
-    <div class="list-group-item list-group-item-action d-flex" :class="{active: this.$parent.chosenVolunteer === volunteer}">
+    <div class="list-group-item list-group-item-action d-flex" :class="{active: beneficiaryStore.getChosenVolunteerId === volunteer.id}">
 <!--      <div class="me-3">-->
 <!--        <img class="object-fit" width="100" height="100" src="@/assets/img/person.jpg" alt="portrait">-->
 <!--      </div>-->
@@ -11,7 +11,7 @@
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-0 fw-bold">{{ volunteer.firstName + ' ' + volunteer.lastName}}</h5>
         </div>
-        <p class="mb-2" :class="{'text-muted': this.$parent.chosenVolunteer !== volunteer}">{{ this.activitiesString.slice(0, -3) }}</p>
+        <p class="mb-2" :class="{'text-muted': beneficiaryStore.getChosenVolunteerId !== volunteer.id}">{{ this.activitiesString.slice(0, -3) }}</p>
         <p class="mb-1">
           {{ volunteer.description }}
         </p>
@@ -22,8 +22,16 @@
 </template>
 
 <script>
+import {useBeneficiaryStore} from "@/stores/beneficiary";
+
 export default {
   name: "RadioVolunteer",
+  setup() {
+    const beneficiaryStore = useBeneficiaryStore()
+    return {
+      beneficiaryStore
+    }
+  },
   // emits: ["input"],
   props: {
     volunteer: {
@@ -44,6 +52,11 @@ export default {
       .catch((error) => {
         console.log(error);
       })
+  },
+  methods: {
+    changedVolunteer (id) {
+      this.beneficiaryStore.setChosenVolunteerId(id);
+    }
   }
 }
 </script>

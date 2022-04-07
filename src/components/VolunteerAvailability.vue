@@ -15,15 +15,19 @@
 
 <script>
 import RadioDaytime from "@/components/RadioDatetime";
+import {useBeneficiaryStore} from "@/stores/beneficiary";
 export default {
   name: "VolunteerAvailability",
   components: { RadioDaytime },
-  props: {
-    chosenVolunteer: {
-      required: true
+  setup() {
+    const beneficiaryStore = useBeneficiaryStore()
+    return {
+      beneficiaryStore
     }
   },
   data: () => ({
+    chosenVolunteerId: '',
+    chosenVolunteer: {},
     chosenDatetime: '',
     availability: []
   }),
@@ -33,9 +37,19 @@ export default {
       this.$emit('input', this.chosenDatetime)
     }
   },
-  mounted() {
-    console.log(this.chosenVolunteer)
-    this.axios.get(`/volunteers/${this.chosenVolunteer.id}/availability`)
+  async created() {
+    this.chosenVolunteerId = this.beneficiaryStore.getChosenVolunteerId
+  },
+  async mounted() {
+    await this.axios.get(`/volunteers/${this.chosenVolunteerId}`)
+      .then((response) => {
+        this.chosenVolunteer = response.data
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+    await this.axios.get(`/volunteers/${this.chosenVolunteerId}/availability`)
       .then((response) => {
         const availability = response.data;
         for (const availabilityElement of availability) {

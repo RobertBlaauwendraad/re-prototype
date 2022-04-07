@@ -21,7 +21,8 @@ exports.findById = function(req, res) {
   VolunteerEntity.findById(req.params.id, function(err, volunteer) {
     if (err)
       res.send(err);
-    res.json(volunteer);
+    // Return only the first object in array
+    res.json(volunteer[0]);
   });
 };
 
