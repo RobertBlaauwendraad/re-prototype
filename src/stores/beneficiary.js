@@ -3,13 +3,14 @@ import axios from "@/assets/js/axios";
 
 export const useBeneficiaryStore = defineStore('beneficiary', {
   state: () => ({
-    id: 1,
+    beneficiaryId: 1,
     activities: [],
     volunteers: [],
     chosenVolunteerId: '',
     chosenAvailabilityId: '',
   }),
   getters: {
+    getBeneficiaryId: (state) => state.beneficiaryId,
     getActivities: (state) => state.activities,
     getVolunteers: (state) => state.volunteers,
     getChosenVolunteerId: (state) => state.chosenVolunteerId,
@@ -17,7 +18,7 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
   },
   actions: {
     async fetchActivities() {
-      await axios.get(`/beneficiaries/${this.id}/activities`)
+      await axios.get(`/beneficiaries/${this.beneficiaryId}/activities`)
         .then((response) => {
           this.activities = response.data;
         })
@@ -26,7 +27,7 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
         })
     },
     async fetchVolunteers() {
-      await axios.get(`/beneficiaries/${this.id}/volunteers`)
+      await axios.get(`/beneficiaries/${this.beneficiaryId}/volunteers`)
         .then((response) => {
           this.volunteers = response.data;
         })
@@ -35,7 +36,7 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
         })
     },
     async insertActivity(activityId) {
-      await axios.post(`/beneficiaries/${this.id}/activities/${activityId}`)
+      await axios.post(`/beneficiaries/${this.beneficiaryId}/activities/${activityId}`)
         .catch((error) => {
           console.log(error);
         })
@@ -44,7 +45,7 @@ export const useBeneficiaryStore = defineStore('beneficiary', {
       await this.fetchVolunteers();
     },
     async deleteActivity(activityId) {
-      await axios.delete(`/beneficiaries/${this.id}/activities/${activityId}`)
+      await axios.delete(`/beneficiaries/${this.beneficiaryId}/activities/${activityId}`)
         .catch((error) => {
           console.log(error);
         })

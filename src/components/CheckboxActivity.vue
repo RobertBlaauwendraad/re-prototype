@@ -43,6 +43,9 @@ export default {
     capitalize (string) {
       return capitalize(string);
     },
+    async created() {
+      await this.beneficiaryStore.fetchActivities();
+    },
     async updateStore () {
       if (this.isActive) {
         await this.beneficiaryStore.deleteActivity(this.activity.id)

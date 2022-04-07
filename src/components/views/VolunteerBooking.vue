@@ -136,8 +136,10 @@ export default {
       }
     },
     async confirmedSelection (activityId) {
+      const beneficiaryId = this.beneficiaryStore.getBeneficiaryId
       const availabilityId = this.beneficiaryStore.getChosenAvailabilityId
       await this.axios.post(`/bookings`, {
+        beneficiaryId,
         availabilityId,
         activityId
       })

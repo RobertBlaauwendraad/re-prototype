@@ -21,7 +21,6 @@ export default {
   components: {CheckboxActivity},
   setup() {
     const beneficiaryStore = useBeneficiaryStore()
-
     return {
       beneficiaryStore
     }

@@ -72,7 +72,7 @@ Volunteer.delete = function (id, result) {
 };
 
 Volunteer.getAvailabilityById = function (id, result) {
-  dbConnector.query("SELECT * FROM Availability WHERE volunteerId = ?", id, function (err, res) {
+  dbConnector.query("SELECT * FROM Availability WHERE id NOT IN (SELECT availabilityId FROM Booking) AND volunteerId = ?", id, function (err, res) {
     if(err) {
       console.log("error: ", err);
       result(err, null);
