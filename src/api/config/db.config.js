@@ -1,7 +1,8 @@
 'use strict';
 
 const mysql = require('mysql2');
-require('dotenv').config({path: './.env.local'});
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env.local') });
 
 // Local mysql db connection
 const dbConnector = mysql.createConnection({

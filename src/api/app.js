@@ -4,7 +4,10 @@ const bodyParser = require('body-parser')
 const https = require("https")
 const http = require("http");
 const fs = require("fs");
-require('dotenv').config({path: './.env.local'});
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env.local') });
+
+console.log(__dirname)
 
 // Create express app
 const app = express()
