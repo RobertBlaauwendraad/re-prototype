@@ -1,6 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const https = require("https")
+const http = require("http");
+const fs = require("fs");
 require('dotenv').config({path: './.env.local'});
 
 // Create express app
@@ -40,3 +43,14 @@ app.use('/api/v1/bookings', bookingRoutes)
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
+
+if (process.env.ENV === "production") {
+  const options = {
+    key: fs.readFileSync(process.env.KEY_LOCATION),
+    cert: fs.readFileSync(process.env.CERT_LOCATION),
+    passphrase: process.env.CERT_PASSWORD
+  };
+  https.createServer(options, app).listen(port);
+} else {
+  http.createServer(app).listen(port);
+}
