@@ -40,10 +40,6 @@ app.use('/api/v1/activities', activityRoutes)
 const bookingRoutes = require('./src/routes/booking.routes')
 app.use('/api/v1/bookings', bookingRoutes)
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-})
-
 if (process.env.ENV === "production") {
   const options = {
     key: fs.readFileSync(process.env.KEY_LOCATION),
