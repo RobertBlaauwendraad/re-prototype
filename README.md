@@ -1,6 +1,18 @@
-# re-prototype
+# Prototype Requirements Engineering
+Made by Jonathan Brandsen, Robert Blaauwendraad, Casper Fabritius and Siem Kleuskens
 
-## Project setup
+## Run project locally
+
+### Prerequisites
+Node and NPM
+
+### Set up database
+Create a MySQL database and see the `MYSQL_TEST_DATA` file for the schema and test data.
+
+### Set up environment variables
+Create a `.env.local` file in the root folder and refer to `.env.example` for which variables are required and optional
+
+### Install node modules
 ```
 npm install
 ```
@@ -10,20 +22,20 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Run REST API
+```angular2html
+npm run start
 ```
-npm run build
-```
+
+## Other useful commands
 
 ### Lints and fixes files
 ```
 npm run lint
 ```
 
-### Run REST API
-```angular2html
-npm run start
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Compiles and minifies for production
+```
+npm run build
+```
