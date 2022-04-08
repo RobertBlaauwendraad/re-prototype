@@ -5,7 +5,7 @@ const headers = {
 };
 
 export default axios.create({
-  baseURL: 'http://localhost:3000/api/v1',
+  baseURL: process.env.VUE_APP_API_URL + '/api/v1',
   timeout: 1000,
   headers
 });

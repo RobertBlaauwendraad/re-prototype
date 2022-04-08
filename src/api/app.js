@@ -1,12 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+require('dotenv').config({path: './.env.local'});
 
 // Create express app
 const app = express()
 
 // Setup server port
-const port = process.env.PORT || 3000
+const port = process.env.API_PORT || 3000
 
 // Parse requests of content type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
