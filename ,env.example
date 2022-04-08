@@ -1,0 +1,7 @@
+NODE_ENV=environment
+API_PORT=3000 (default: 3000)
+DB_HOSt=host (default: localhost)
+DB_NAME=database_name
+DB_USER=database_user
+DB_PASSWORD=database_password
+VUE_APP_API_URL=full_api_url (default: http://localhost:3000)
